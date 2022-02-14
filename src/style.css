@@ -1,0 +1,127 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    color:black;
+    font-family:Arial;
+    font-size:16px;
+    font-weight:normal;
+    line-height:1.6em;
+    margin:0;
+}
+
+.container{
+    width:80%;
+    margin:auto;
+}
+
+header {
+    padding: 1rem;
+    background-color: lightgray;
+}
+
+h1{
+    width:100%;
+    font-size:50px;
+    text-align:center;
+}
+.tophead{
+    padding-left:100px;
+}
+
+#navbar ul {
+    padding: 0;
+    list-style: none;
+    text-align: right;
+    margin-left: 100px;
+    
+}
+
+#navbar li {
+}
+
+#navbar a{
+    color:white;
+}
+
+#navbar {
+    background-color: black;
+    width: 100%;
+    margin-top:0px;
+}
+
+
+
+table, th, td, tr{
+    border:1px solid black;
+    border-collapse:collapse;
+    border-spacing:15px;
+}
+
+a:hover{
+    color:red;
+}
+
+tr:nth-child(odd) {
+    background-color:lightgray;
+}
+
+table{
+    width:100%;
+}
+
+.myform {
+    width: 50%;
+    padding: 2rem;
+    margin-top:25px;
+    margin-bottom: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: lightgray;
+    border: 3px solid black;
+}
+
+h2{
+    text-align:center;
+}
+
+.myform .form-group{
+    padding-bottom:15px;
+    margin-bottom:15px;
+
+}
+
+.myform input[type="text"], .myform textarea {
+    padding: 4px;
+    width: 100%;
+}
+
+.myform input[type="number"], .myform textarea {
+    padding: 4px;
+    width:100%;
+}
+
+.myform input[type="date"], .myform textarea {
+    padding:4px;
+    width:100%;
+}
+
+.btn{
+    display:block;
+    width:100%;
+    padding:6px;
+    background-color:black;
+    color:white;
+}
+
+.formAddress{
+    margin:0;
+    padding:0;
+    background-color:white;
+    border: 0.5px solid black;
+    width:100%
+}
+
