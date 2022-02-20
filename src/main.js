@@ -32,13 +32,17 @@ document.addEventListener("DOMContentLoaded", () => {
         createAccountForm.classList.add("form--hidden");
     });
 
-    loginForm.addEventListener("submit", e => {
-        e.preventDefault();
+    document.getElementById("explicit-block-txt").onkeypress = function (e) {
+        var chr = String.fromCharCode(e.which);
+        if ("()/>{}[]+=_-,|.?!@#`\~$\'%:;^&*<\" ".indexOf(chr) >= 0)
+            return false;
+    };
+    document.getElementById("signupUsername").onkeypress = function (e) {
+        var chr = String.fromCharCode(e.which);
+        if ("()/>{}[]+=_-,|.?!@#`\~$\'%:;^&*<\" ".indexOf(chr) >= 0)
+            return false;
+    };
 
-        // Perform your AJAX/Fetch login
-
-        setFormMessage(loginForm, "error", "Invalid username/password combination");
-    });
 
     document.querySelectorAll(".form__input").forEach(inputElement => {
         inputElement.addEventListener("blur", e => {
