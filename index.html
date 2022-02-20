@@ -12,16 +12,18 @@
             <h1 class="form__title">Login</h1>
             <div class="form__message form__message--error"></div>
             <div class="form__input-group">
-                <input type="text" class="form__input" autofocus placeholder="Username or email" onkeypress="return event.charCode != 32">
+                <input type='text' class="form__input" autofocus placeholder="Username" onkeypress="return event.charCode != 32" id='explicit-block-txt' value='' onpaste="return false" />
+
                 <div class="form__input-error-message"></div>
             </div>
             <div class="form__input-group">
-                <input type="password" class="form__input" autofocus placeholder="Password" onkeypress="return event.charCode != 32">
+                <input type="password" class="form__input" autofocus placeholder="Password" onkeypress="return event.charCode != 32 " maxlength="20">
                 <div class="form__input-error-message"></div>
             </div>
-            <button onclick="window.location.href='fuelQuote.html'" class="form__button" type="submit">Continue</button>
-            
+            <input onclick="window.location.href='fuelQuote.html'" class="form__button"type="button" value="Continue">
+
             <p class="form__text">
+
                 <a class="form__link" href="./" id="linkCreateAccount">Don't have an account? Create account</a>
             </p>
         </form>
@@ -29,22 +31,25 @@
             <h1 class="form__title">Create Account</h1>
             <div class="form__message form__message--error"></div>
             <div class="form__input-group">
-                <input type="text" id="signupUsername" class="form__input" autofocus placeholder="Username" required onkeypress="return event.charCode != 32">
+                <input type="text" id="signupUsername"  class="form__input" autofocus placeholder="Username" required onkeypress="return event.charCode != 32">
                 <div class="form__input-error-message"></div>
             </div>
             <div class="form__input-group">
-                <input type="password" class="form__input" autofocus placeholder="Password" required onkeypress="return event.charCode != 32">
+                <input type="password" class="form__input" autofocus placeholder="Password" required onkeypress="return event.charCode != 32" maxlength="20">
                 <div class="form__input-error-message"></div>
             </div>
             <div class="form__input-group">
-                <input type="password" class="form__input" autofocus placeholder="Confirm password" required onkeypress="return event.charCode != 32">
+                <input type="password" class="form__input" autofocus placeholder="Confirm password" required onkeypress="return event.charCode != 32" maxlength="20">
                 <div class="form__input-error-message"></div>
             </div>
-            <button onclick="window.location.href='fuelQuote.html'" class="form__button" type="submit">Continue</button>
+            <button onclick="window.location.href='AccountInfo.html'" class="form__button" type="submit">Continue</button>
             <p class="form__text">
                 <a class="form__link" href="./" id="linkLogin">Already have an account? Sign in</a>
             </p>
         </form>
     </div>
-    <script src="./src/main.js"></script>
+    <script src="./src/main.js">
+
+
+    </script>
 </body>
