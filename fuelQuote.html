@@ -91,34 +91,36 @@ function closeNav() {
 
     <div class="container">
 
-        <form class="myform">
+        <form class="myform" id="myform">
             <h2>New Purchase</h2>
+            <div class="currentdate"></div>
+            <div class="msg" id="error"></div>
             <div class="form-group">
-                <lable>Gallons Requested:</lable>
-                <input type="number" name="gallons requested" />
+                <lable for="gallonsRequested">Gallons Requested:</lable>
+                <input type="number" id="gallonsRequested" name="gallonsRequested"/>
             </div>
             <div class="form-group">
                 <lable>Delivery Address:</lable>
             </div>
             <div class="form-group">
-                <label>Deliverly Date:</label>
-                <input type="date" name="deliverly date"/>
+                <label for ="deliverlyDate">Deliverly Date:</label>
+                <input type="date" placeholder="mm-dd-yyyy" id="deliverlyDate" name="deliverlyDate"/>
             </div>
             <div class="form-group">
-                <label>Deliver From:</label>
-                <input type="text" name="deliver from" />
+                <label for="deliverFrom">Deliver From:</label>
+                <input type="text" id="deliverFrom" name="deliverFrom" />
             </div>
             <div class="form-group">
-                <label>Suggested Price:</label>
-                <input type="number" name="suggested price" />
+                <label for="suggestedPrice">Suggested Price:</label>
+                <input type="number" id="suggestedPrice" name="suggestedPrice" />
             </div>
             <div class="form-group">
-                <input class="btn" type="button" name="submit" value="Submit"/>
+                <input class="btn" type="submit" name="button" value="Submit"/>
             </div>
 
         </form>
 
-        <table class="mytable">
+        <table class="mytable" id="mytable">
             <tr class="tophead">
                 <th colspan="16">Fuel Quote History</th>
             </tr>
