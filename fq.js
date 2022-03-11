@@ -1,3 +1,4 @@
+
 //gets the data from the form
 const gallonsRequested = document.querySelector('#gallonsRequested');
 const deliverlyDate = document.querySelector('#deliverlyDate');
@@ -5,6 +6,16 @@ const deliverFrom = document.querySelector('#deliverFrom');
 const suggestedPrice = document.querySelector('#suggestedPrice');
 const myForm = document.querySelector('#myform');
 const msg =document.querySelector('.msg');
+
+class pricingModule{
+    constructor(suggestedPrice, gallonsRequested){
+        this.suggestedPrice = suggestedPrice;
+        this.gallonsRequested = gallonsRequested;
+    }
+    getTotalPrice() {
+        return 230.34;
+    }
+}
 
 myForm.addEventListener('submit',onSubmit);
 
@@ -40,20 +51,22 @@ function onSubmit(e) {
     }
     else if(gallonsRequested.value !== '' && deliverlyDate.value !== '' && deliverFrom.value !=='' && suggestedPrice.value !== '') {
         //start adding stuff to the table
+        total = new pricingModule(suggestedPrice,gallonsRequested);
         var table = document.getElementById('mytable');
         var row = table.insertRow();
         var cell1 = row.insertCell(); //make cells to add stuff to the table equal
         var cell2 = row.insertCell();
         var cell3 = row.insertCell();
         var cell4 = row.insertCell();
-        var cell5 = row.insertCell();
+        var cell7 = row.insertCell();
         var cell6 = row.insertCell();
+
         cell1.innerHTML = gallonsRequested.value;
         cell2.innerHTML = 'NA';
         cell3.innerHTML = deliverlyDate.value;
         cell4.innerHTML = deliverFrom.value;
-        cell5.innerHtML = suggestedPrice.value;
-        cell6.innerHTML = 'NA';
+        cell6.innerHTML = total.getTotalPrice();
+        cell7.innerHTML = suggestedPrice.value;
     }
 
     gallonsRequested.value = ''; //empty values
