@@ -126,6 +126,11 @@ h2{
     width:100%
 }
 
+.myform select {
+    padding:4px;
+    width:100%;
+}
+
 .error{
     color:orangered;
     padding :5px;
