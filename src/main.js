@@ -20,7 +20,7 @@ function validate() {
     var username = document.getElementById("explicit-block-txt").value;
     var password = document.getElementById("passwort").value;
     if (username="admin" && password == "admin") {
-        window.location.href = 'Accountinfo.html';
+        window.location.href = 'AccountInfo.html';
     }
 }
 
