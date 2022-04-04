@@ -72,8 +72,8 @@
     <nav id="navbar">
         <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="AccountInfo.html">Account Info</a>
-            <a href="index.html">Logout</a>
+            <a href="AccountInfo.php">Account Info</a>
+            <a href="logout.php">Logout</a>
         </div>
         <div class="right">
             <span style="font-size:30px;cursor:pointer" onclick="openNav()">
