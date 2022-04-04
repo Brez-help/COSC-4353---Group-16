@@ -33,7 +33,7 @@ include("auth_session.php");
             echo "<div class='form'>
                   <h3>You Have successfully updated your info.</h3><br/>
                   <p class='link'>Click here to <a href='AccountInfo.php'>View Account</a></p>
-                  <p class='link'>Or click here to <a href='fuelQuote.html'>View FuelQuote</a></p>
+                  <p class='link'>Or click here to <a href='fuelQuote.php'>View FuelQuote</a></p>
 
                   </div>";
         } else {
@@ -151,7 +151,7 @@ include("auth_session.php");
                         </div>
                     </div>
                 </div>
-                <input onclick="window.location.href='fuelQuote.html'" type="submit" value="Save">
+                <input onclick="window.location.href='fuelQuote.php'" type="submit" value="Save">
 
 
             </form>
