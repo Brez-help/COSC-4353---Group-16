@@ -1,3 +1,8 @@
+
+<?php
+    include_once 'fuelQuote.inc.php';
+?>
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -68,8 +73,9 @@
     <nav id="navbar">
         <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="AccountInfo.html">Account Info</a>
-            <a href="index.html">Logout</a>
+
+            <a href="AccountInfo.php">Account Info</a>
+            <a href="logout.php">Logout</a>
         </div>
         <div class="right">
             <span style="font-size:30px;cursor:pointer" onclick="openNav()">
@@ -91,7 +97,7 @@ function closeNav() {
 
     <div class="container">
 
-        <form class="myform" id="myform">
+        <form class="myform" id="myform" action="fuelQuote.php" method="POST">
             <h2>New Purchase</h2>
             <div class="currentdate"></div>
             <div class="msg" id="error"></div>
@@ -168,23 +174,62 @@ function closeNav() {
             </div>
 
         </form>
+        <?php
+        
+            if(isset($_POST['gallonsRequested']) || isset($_POST['deliverlyDate']) || isset($_POST['deliverFrom']) || isset($_POST['suggestedPrice'])) {
+                $gallonsRequested = $_POST['gallonsRequested'];
+                $deliverAddress = '4361 Cougar Village Dr';
+                $deliverlyDate = $_POST['deliverlyDate'];
+                $deliverFrom = $_POST['deliverFrom'];
+                $suggestedPrice = $_POST['suggestedPrice'];
+                $totalCost = '230.34';
+                $user = 'dwolf22';
+            
+                $query = "INSERT INTO `fuelform`(SugPrice, DelDate, DelAddress, DelForm, GalReq, TotalCost, loginafule_User)
+                VALUES ('$suggestedPrice', '$deliverlyDate', '$deliverAddress', '$deliverFrom', '$gallonsRequested', '$totalCost', '$user');";
+            
+                $result   = mysqli_query($conn, $query);
+            
+            }
+        
+        ?>
 
         <table class="mytable" id="mytable">
-            <tr class="tophead">
-                <th colspan="16">Fuel Quote History</th>
-            </tr>
-            <tr>
-                <th>Gallons Requested</th>
-                <th>Delivery Address</th>
-                <th>Date Delivered</th>
-                <th>Delivered From</th>
-                <th>Suggested Price</th>
-                <th>Total Cost</th>
-            </tr>
+            <thead>
+                <tr class="tophead">
+                    <th colspan="16">Fuel Quote History</th>
+                </tr>
+                <tr>
+                    <th>Gallons Requested</th>
+                    <th>Delivery Address</th>
+                    <th>Date Delivered</th>
+                    <th>Delivered From</th>
+                    <th>Suggested Price</th>
+                    <th>Total Cost</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                    $sql = "Select GalReq, DelAddress, DelDate, DelForm, SugPrice, TotalCost from fuelform;";
+                    $result = mysqli_query($conn, $sql);
+                    $resultCheck = mysqli_num_rows($result);
+                    
+                    if($resultCheck > 0) {
+                        while ($row = mysqli_fetch_array($result)) {
+                ?>
+                <tr>
+                    <td><?php echo $row['GalReq']; ?></td>
+                    <td><?php echo $row['DelAddress']; ?></td>
+                    <td><?php echo $row['DelDate']; ?></td>
+                    <td><?php echo $row['DelForm']; ?></td>
+                    <td><?php echo $row['SugPrice']; ?></td>
+                    <td><?php echo $row['TotalCost']; ?></td>
+                </tr>
+<?php }} ?>
+            </tbody>
         </table>
 
 
     </div>
-    <script src="fq.js"></script>
 </body>
 </html>

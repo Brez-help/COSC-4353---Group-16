@@ -49,32 +49,13 @@ function onSubmit(e) {
 
         setTimeout(() =>msg.remove(), 3000);
     }
-    else if(gallonsRequested.value !== '' && deliverlyDate.value !== '' && deliverFrom.value !=='' && suggestedPrice.value !== '') {
-        //start adding stuff to the table
-        total = new pricingModule(suggestedPrice,gallonsRequested);
-        var table = document.getElementById('mytable');
-        var row = table.insertRow();
-        var cell1 = row.insertCell(); //make cells to add stuff to the table equal
-        var cell2 = row.insertCell();
-        var cell3 = row.insertCell();
-        var cell4 = row.insertCell();
-        var cell7 = row.insertCell();
-        var cell6 = row.insertCell();
 
-        cell1.innerHTML = gallonsRequested.value;
-        cell2.innerHTML = 'NA';
-        cell3.innerHTML = deliverlyDate.value;
-        cell4.innerHTML = deliverFrom.value;
-        cell6.innerHTML = total.getTotalPrice();
-        cell7.innerHTML = suggestedPrice.value;
-    }
-
-    gallonsRequested.value = ''; //empty values
+    /*gallonsRequested.value = ''; //empty values
     deliverlyDate.value = '';
     deliverFrom.value = '';
     suggestedPrice.value = '';
     msg.value = '';
-    myForm.value = '';
+    myForm.value = '';*/
 
 
 }
