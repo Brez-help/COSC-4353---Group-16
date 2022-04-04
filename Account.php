@@ -26,7 +26,7 @@ include("auth_session.php");
         $State = $_REQUEST['State'];
 
         
-        $query    = "INSERT into `clientinfo` (Name, AddressA,AddressB,City,Zipcode,State,loginafule_Username)
+        $query    = "REPLACE into `clientinfo` (Name, AddressA,AddressB,City,Zipcode,State,loginafule_Username)
                      VALUES ('$name', '$Adda','$Addb','$City','$Zip','$State','$Fq')";
         $result   = mysqli_query($con, $query);
         if ($result) {
