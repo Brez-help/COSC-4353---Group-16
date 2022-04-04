@@ -30,6 +30,7 @@ CREATE TABLE `clientinfo` (
   `Zipcode` char(9) NOT NULL,
   `State` char(2) NOT NULL,
   `loginafule_Username` char(20) NOT NULL,
+  PRIMARY KEY (`loginafule_Username`),
   KEY `Test` (`loginafule_Username`),
   CONSTRAINT `Test` FOREIGN KEY (`loginafule_Username`) REFERENCES `loginafule` (`Username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -71,7 +72,7 @@ CREATE TABLE `fuelform` (
 
 LOCK TABLES `fuelform` WRITE;
 /*!40000 ALTER TABLE `fuelform` DISABLE KEYS */;
-INSERT INTO `fuelform` VALUES (90.09,'0000-00-00','4361 Cougar Village Dr','TX',67.78,234.89,'dwolf22'),(46.12,'2023-12-12','4361 Cougar Village Dr','TX',67.76,234.89,'dwolf22');
+INSERT INTO `fuelform` VALUES (90.00,'0000-00-00','4361 Cougar Village Dr','TX',67.00,234.00,'dwolf22'),(46.00,'2023-12-12','4361 Cougar Village Dr','TX',67.00,234.00,'dwolf22'),(280.90,'2022-04-29','4361 Cougar Village Dr','IN',88.08,230.34,'dwolf22'),(100.90,'2022-04-14','4361 Cougar Village Dr','GA',90.76,230.34,'dwolf22'),(100.90,'2022-04-14','4361 Cougar Village Dr','GA',90.76,230.34,'dwolf22'),(80.00,'2022-04-22','4361 Cougar Village Dr','AL',89.90,230.34,'dwolf22'),(80.00,'2022-04-22','4361 Cougar Village Dr','AL',89.90,230.34,'dwolf22'),(80.00,'2022-04-22','4361 Cougar Village Dr','AL',89.90,230.34,'dwolf22'),(80.00,'2022-04-22','4361 Cougar Village Dr','AL',89.90,230.34,'dwolf22'),(80.00,'2022-04-22','4361 Cougar Village Dr','AL',89.90,230.34,'dwolf22'),(80.00,'2022-04-22','4361 Cougar Village Dr','AL',89.90,230.34,'dwolf22'),(80.00,'2022-04-22','4361 Cougar Village Dr','AL',89.90,230.34,'dwolf22'),(80.00,'2022-04-23','4361 Cougar Village Dr','KS',89.00,230.34,'dwolf22'),(80.00,'2022-04-23','4361 Cougar Village Dr','KS',89.00,230.34,'dwolf22'),(100.90,'2022-04-22','4361 Cougar Village Dr','AL',88.60,230.34,'dwolf22'),(100.90,'2022-04-22','4361 Cougar Village Dr','AL',88.60,230.34,'dwolf22');
 /*!40000 ALTER TABLE `fuelform` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -84,7 +85,7 @@ DROP TABLE IF EXISTS `loginafule`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `loginafule` (
   `Username` char(20) NOT NULL,
-  `Password` char(20) NOT NULL,
+  `Password` char(32) DEFAULT NULL,
   PRIMARY KEY (`Username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -108,4 +109,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-03-29 20:59:02
+-- Dump completed on 2022-04-03 21:05:24
