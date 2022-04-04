@@ -16,6 +16,7 @@
         $username = mysqli_real_escape_string($con, $username);
         $password = stripslashes($_REQUEST['password']);
         $password = mysqli_real_escape_string($con, $password);
+        $password = md5($password);
         $query    = "INSERT into `loginafule` (username, password)
                      VALUES ('$username', '$password')";
         $result   = mysqli_query($con, $query);
@@ -28,7 +29,9 @@
             echo "<div class='form'>
                   <h3>Required fields are missing.</h3><br/>
                   <p class='link'>Click here to <a href='registration.php'>registration</a> again.</p>
+                  
                   </div>";
+                  
         }
     } else {
 ?>
