@@ -176,21 +176,23 @@ function closeNav() {
         </form>
         <?php
         
-            if(isset($_POST['gallonsRequested']) || isset($_POST['deliverlyDate']) || isset($_POST['deliverFrom']) || isset($_POST['suggestedPrice'])) {
+            /*if(isset($_POST['gallonsRequested']) || isset($_POST['deliverlyDate']) || isset($_POST['deliverFrom']) || isset($_POST['suggestedPrice'])) {
                 $gallonsRequested = $_POST['gallonsRequested'];
-                $deliverAddress = '4361 Cougar Village Dr';
+                echo $gallonsRequested;
+                /*$deliverAddress = '4361 Cougar Village Dr';
                 $deliverlyDate = $_POST['deliverlyDate'];
                 $deliverFrom = $_POST['deliverFrom'];
-                $suggestedPrice = $_POST['suggestedPrice'];
-                $totalCost = '230.34';
                 $user = 'dwolf22';
+                $cost = new pricingModule($gallonsRequested,  $deliverFrom, $conn, $user);
+                $suggestedPrice = $cost->getsuggestedPrice();
+                $totalCost = $cost->gettotalCost();
             
                 $query = "INSERT INTO `fuelform`(SugPrice, DelDate, DelAddress, DelForm, GalReq, TotalCost, loginafule_User)
                 VALUES ('$suggestedPrice', '$deliverlyDate', '$deliverAddress', '$deliverFrom', '$gallonsRequested', '$totalCost', '$user');";
             
                 $result   = mysqli_query($conn, $query);
             
-            }
+            }*/
         
         ?>
 
@@ -231,5 +233,6 @@ function closeNav() {
 
 
     </div>
+    <!--script src="fq.js"></script-->
 </body>
 </html>
