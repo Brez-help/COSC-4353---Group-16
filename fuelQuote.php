@@ -115,8 +115,25 @@ function closeNav() {
             $empty;
             $small;
             $yesterday;
+            $found = false;
 
-            if (!fuelForm($gallonsRequested, $deliverlyDate, $deliverFrom, $small, $empty, $yesterday)) {
+            if (empty($gallonsRequested) || empty($deliverlyDate) || empty($deliverFrom)) {
+                $found = true;
+                $empty = "Please enter all fields<br>";
+                
+            }
+            
+            else if($gallonsRequested <= 0) {
+                $small = "Please select an amount greater than 0<br>";
+                $found = true;
+            }
+            
+            else if ($today > $deliverlyDate){
+                $found = true;
+                $yesterday = "Please select a day after tomorrow for deliverly<br>";
+            }
+
+            if (!$found) {
                 $cost = new pricingModule($gallonsRequested,  $deliverFrom, $conn, $user);
                 $suggestedPrice = $cost->getsuggestedPrice();
                 $totalCost = $cost->gettotalCost();

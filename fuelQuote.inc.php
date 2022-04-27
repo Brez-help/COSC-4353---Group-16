@@ -20,28 +20,6 @@ Margin =  Current Price * (Location Factor - Rate History Factor + Gallons Reque
 
 */
 
-error_reporting();
-
-function fuelForm($gallonsRequested, $deliverlyDate, $deliverFrom, &$small, &$empty, &$yesterday) {
-    $found = false;
-    $today = date("Y-m-d");
-    if (empty($gallonsRequested) || empty($deliverlyDate) || empty($deliverFrom)) {
-        $found = true;
-        $empty = "Please enter all fields<br>";
-        
-    }
-    
-    if($gallonsRequested <= 0) {
-        $small = "Please select an amount greater than 0<br>";
-        $found = true;
-    }
-    
-    if ($today > $deliverlyDate){
-        $found = true;
-        $yesterday = "Please select a day after tomorrow for deliverly<br>";
-    }
-    return $found;
-}
 
 class pricingModule{
     private $suggestedPrice;

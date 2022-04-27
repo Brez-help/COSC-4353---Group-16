@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <title>Login</title>
-    <link rel="stylesheet" href="src/main.css"/>
+    <link rel="stylesheet" href="src/style.css"/>
 </head>
 <body>
 <?php
@@ -26,7 +26,7 @@
             // Redirect to user dashboard page
             header("Location: Account.php");
         } else {
-            echo "<div class='form'>
+            echo "<div class='myform'>
                   <h3>Incorrect Username/password.</h3><br/>
                   <p class='link'>Click here to <a href='login.php'>Login</a> again.</p>
                   </div>";
@@ -34,13 +34,22 @@
         }
     } else {
 ?>
-    <form class="form" method="post" name="login">
+    <div class="container">
+    <form class="myform" method="post" name="login">
         <h1 class="login-title">Login</h1>
-        <input type="text" class="login-input" name="username" placeholder="Username" autofocus="true"/>
-        <input type="password" class="login-input" name="password" placeholder="Password"/>
-        <input type="submit" value="Login" name="submit" class="login-button"/>
+        <br>
+        <div class = "form-group">
+            <input type="text"  name="username" placeholder="Username" autofocus="true"/>
+        </div>
+        <div class="form-group">
+            <input type="password" class="pass" name="password" placeholder="Password"/>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Login" name="submit" class="btn"/>
+        </div>
         <p class="link"><a href="registration.php">New Registration</a></p>
   </form>
+  </div>
 <?php
     }
 ?>
