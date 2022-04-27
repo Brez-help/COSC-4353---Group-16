@@ -1,5 +1,6 @@
 
 <?php
+    session_start();
     include_once 'fuelQuote.inc.php';
 ?>
 
@@ -97,21 +98,63 @@ function closeNav() {
 
     <div class="container">
 
+    <?php
+        $username = $_SESSION['username'];
+        $sql = "select AddressA from clientinfo where loginafule_Username = '$username';";
+        $result = mysqli_query($conn, $sql);
+        $data= mysqli_fetch_assoc($result);
+        $address = $data['AddressA'];
+        $found = false;
+                    
+        if(isset($_POST['gallonsRequested']) || isset($_POST['deliverlyDate']) || isset($_POST['deliverFrom']) /*|| isset($_POST['suggestedPrice'])*/) {
+            $gallonsRequested = $_POST['gallonsRequested'];
+            $deliverlyDate = $_POST['deliverlyDate'];
+            $deliverFrom = $_POST['deliverFrom'];
+            $user = $username;
+            $today = date("Y-m-d");
+            $empty;
+            $small;
+            $yesterday;
+
+            if (!fuelForm($gallonsRequested, $deliverlyDate, $deliverFrom, $small, $empty, $yesterday)) {
+                $cost = new pricingModule($gallonsRequested,  $deliverFrom, $conn, $user);
+                $suggestedPrice = $cost->getsuggestedPrice();
+                $totalCost = $cost->gettotalCost();
+                
+                $query = "INSERT INTO `fuelform`(SugPrice, DelDate, DelAddress, DelForm, GalReq, TotalCost, loginafule_User)
+                VALUES ('$suggestedPrice', '$deliverlyDate', '$address', '$deliverFrom', '$gallonsRequested', '$totalCost', '$user');";
+                
+                $result   = mysqli_query($conn, $query);
+            }
+                
+                
+        }
+        
+    ?>
+
         <form class="myform" id="myform" action="fuelQuote.php" method="POST">
             <h2>New Purchase</h2>
-            <div class="currentdate"></div>
-            <div class="msg" id="error"></div>
+            <div id="error"> <?php if (!empty($empty)) {
+                    echo $empty;
+                }; ?></div>
             <div class="form-group">
                 <lable for="gallonsRequested">Gallons Requested:</lable>
+                <div id="error"> <?php if (!empty($small)) {
+                    echo $small;
+                }; ?></div>
                 <input type="number" step = "0.01" id="gallonsRequested" name="gallonsRequested"/>
             </div>
             <div class="form-group">
                 <label for ="deliverlyDate">Deliverly Date:</label>
-                <input type="date" placeholder="mm-dd-yyyy" id="deliverlyDate" name="deliverlyDate"/>
+                <div id="error"> <?php if (!empty($yesterday)) {
+                    echo $yesterday;
+                }; ?></div>
+                <input type="date" placeholder="mm-dd-yyyy" id="deliverlyDate" name="deliverlyDate" />
             </div>
             <div class="form-group">
                 <label for="deliverFrom">Deliver From:</label>
                 <select id = "deliverFrom" name="deliverFrom">
+                    <option value=""></option>
                     <option value="AL">Alabama</option>
                     <option value="AK">Alaska</option>
                     <option value="AZ">Arizona</option>
@@ -165,36 +208,16 @@ function closeNav() {
                     <option value="WY">Wyoming</option>
                 </select>
             </div>
-            <div class="form-group">
+            <!--div class="form-group">
                 <label for="suggestedPrice">Suggested Price:</label>
-                <input type="number" step = "0.01" id="suggestedPrice" name="suggestedPrice" />
-            </div>
+                <input type="number" step = "0.01" id="suggestedPrice" name="suggestedPrice"/>
+            </div-->
             <div class="form-group">
-                <input class="btn" type="submit" name="button" value="Submit"/>
+                <button class="btn" type="submit" name="button" value="Submit">Submit</button>
             </div>
 
         </form>
-        <?php
-        
-            /*if(isset($_POST['gallonsRequested']) || isset($_POST['deliverlyDate']) || isset($_POST['deliverFrom']) || isset($_POST['suggestedPrice'])) {
-                $gallonsRequested = $_POST['gallonsRequested'];
-                echo $gallonsRequested;
-                /*$deliverAddress = '4361 Cougar Village Dr';
-                $deliverlyDate = $_POST['deliverlyDate'];
-                $deliverFrom = $_POST['deliverFrom'];
-                $user = 'dwolf22';
-                $cost = new pricingModule($gallonsRequested,  $deliverFrom, $conn, $user);
-                $suggestedPrice = $cost->getsuggestedPrice();
-                $totalCost = $cost->gettotalCost();
-            
-                $query = "INSERT INTO `fuelform`(SugPrice, DelDate, DelAddress, DelForm, GalReq, TotalCost, loginafule_User)
-                VALUES ('$suggestedPrice', '$deliverlyDate', '$deliverAddress', '$deliverFrom', '$gallonsRequested', '$totalCost', '$user');";
-            
-                $result   = mysqli_query($conn, $query);
-            
-            }*/
-        
-        ?>
+       
 
         <table class="mytable" id="mytable">
             <thead>
@@ -212,7 +235,7 @@ function closeNav() {
             </thead>
             <tbody>
                 <?php
-                    $sql = "Select GalReq, DelAddress, DelDate, DelForm, SugPrice, TotalCost from fuelform;";
+                    $sql = "Select GalReq, DelAddress, DelDate, DelForm, SugPrice, TotalCost from fuelform where loginafule_User = '$username';";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
                     

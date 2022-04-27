@@ -11,7 +11,7 @@ require('db.php');
 $Fq = $_SESSION["username"];
 //$sql = "SELECT Name,AddressA,AddressB,City,Zipcode,State FROM clientinfo WHERE loginafule_Username=$Fq";
 $Adda="Select AddressA FROM clientinfo WHERE loginafule_Username=$Fq;";
-$sql = "Select Name, AddressA, AddressB, City, Zipcode, State from clientinfo;";
+$sql = "Select Name, AddressA, AddressB, City, Zipcode, State from clientinfo where loginafule_Username='$Fq';";
                     $result = mysqli_query($con, $sql);
                     $resultCheck = mysqli_num_rows($result);
 

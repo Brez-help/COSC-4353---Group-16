@@ -11,21 +11,99 @@ if ($conn->connect_error) {
     die("Connection failed");
 }
 
-/*if(isset($_POST['gallonsRequested']) || isset($_POST['deliverlyDate']) || isset($_POST['deliverFrom']) || isset($_POST['suggestedPrice'])) {
-    $gallonsRequested = $_POST['gallonsRequested'];
-    $deliverAddress = '4361 Cougar Village Dr';
-    $deliverlyDate = $_POST['deliverlyDate'];
-    $deliverFrom = $_POST['deliverFrom'];
-    $suggestedPrice = $_POST['suggestedPrice'];
-    $totalCost = '230.34';
-    $user = 'dwolf22';
+/*Suggested Price = Current Price + Margin
 
-    $query = "INSERT INTO `fuelform`(SugPrice, DelDate, DelAddress, DelForm, GalReq, TotalCost, loginafule_User)
-    VALUES ('$suggestedPrice', '$deliverlyDate', '$deliverAddress', '$deliverFrom', '$gallonsRequested', '$totalCost', '$user');";
+Where,
 
-    $result   = mysqli_query($conn, $query);
+Current price per gallon = $1.50 (this is the price what distributor gets from refinery and it varies based upon crude price. But we are keeping it constant for simplicity)
+Margin =  Current Price * (Location Factor - Rate History Factor + Gallons Requested Factor + Company Profit Factor)
 
-}*/
+*/
+
+error_reporting();
+
+function fuelForm($gallonsRequested, $deliverlyDate, $deliverFrom, &$small, &$empty, &$yesterday) {
+    $found = false;
+    $today = date("Y-m-d");
+    if (empty($gallonsRequested) || empty($deliverlyDate) || empty($deliverFrom)) {
+        $found = true;
+        $empty = "Please enter all fields<br>";
+        
+    }
+    
+    if($gallonsRequested <= 0) {
+        $small = "Please select an amount greater than 0<br>";
+        $found = true;
+    }
+    
+    if ($today > $deliverlyDate){
+        $found = true;
+        $yesterday = "Please select a day after tomorrow for deliverly<br>";
+    }
+    return $found;
+}
+
+class pricingModule{
+    private $suggestedPrice;
+    private $margin;
+    private $locationFactor;
+    private $rateHistory;
+    private $grf;
+    private $totalCost;
+
+    public function __construct($gallonsRequested, $deliverFrom, $conn, $user)
+    {
+        $this->deliverFrom = $deliverFrom;
+        $sql = "Select count(DelForm) as total from fuelform where DelForm = '$deliverFrom';";
+        $result = mysqli_query($conn, $sql);
+        $data= mysqli_fetch_assoc($result);
+
+        if ($data['total'] > 0) {
+            $this->rateHistory = .01;
+        }
+        else {
+            $this->rateHistory = 0;
+        }
+
+        $sql = "Select State from clientinfo where loginafule_Username = '$user';";
+        $result = mysqli_query($conn, $sql);
+        $data= mysqli_fetch_assoc($result);
+        $home = $data['State'];
+
+        if($home !== $deliverFrom) {//instate
+            $this->locationFactor = .04;
+        }
+        else {
+            $this->locationFactor = .02;//outofstate
+        }
+
+        if($gallonsRequested > 1000) {
+            $this->grf = .02;
+        }
+        else{
+            $this->grf = .03;
+        }
+
+        $this->margin = $this->locationFactor - $this->rateHistory + $this->grf + .1;
+        $this->margin = $this->margin * 1.50;
+
+        $this->suggestedPrice = 1.50 + $this->margin;
+        $this->suggestedPrice = round($this->suggestedPrice, 2);
+        $this->totalCost = $gallonsRequested * $this->suggestedPrice;
+        $this->totalCost = round($this->totalCost, 2);
+
+    }
+    public function gettotalCost() {
+        return $this->totalCost;
+    }
+    public function getsuggestedPrice() {
+        return $this->suggestedPrice;
+    }
+
+}
+
+
+
 
 
 ?>
