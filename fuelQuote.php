@@ -130,7 +130,7 @@ function closeNav() {
             
             else if ($today > $deliverlyDate){
                 $found = true;
-                $yesterday = "Please select a day after tomorrow for deliverly<br>";
+                $yesterday = "Can't select a previous and today's date<br>";
             }
 
             if (!$found) {
@@ -154,18 +154,18 @@ function closeNav() {
             <div id="error"> <?php if (!empty($empty)) {
                     echo $empty;
                 }; ?></div>
-            <div class="form-group">
-                <label for="gallonsRequested">Gallons Requested:</lable>
-                <div id="error"> <?php if (!empty($small)) {
+            <div id="error"> <?php if (!empty($small)) {
                     echo $small;
                 }; ?></div>
+            <div id="error"> <?php if (!empty($yesterday)) {
+                    echo $yesterday;
+                }; ?></div>
+            <div class="form-group">
+                <label for="gallonsRequested">Gallons Requested:</lable>
                 <input type="number" step = "0.01" id="gallonsRequested" name="gallonsRequested"/>
             </div>
             <div class="form-group">
                 <label for ="deliverlyDate">Deliverly Date:</label>
-                <div id="error"> <?php if (!empty($yesterday)) {
-                    echo $yesterday;
-                }; ?></div>
                 <input type="date" placeholder="mm-dd-yyyy" id="deliverlyDate" name="deliverlyDate" />
             </div>
             <div class="form-group">
