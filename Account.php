@@ -34,6 +34,25 @@ include("auth_session.php");
         $query    = "REPLACE into `clientinfo` (Name, AddressA,AddressB,City,Zipcode,State,loginafule_Username)
                      VALUES ('$name', '$Adda','$Addb','$City','$Zip','$State','$Fq')";
         $result   = mysqli_query($con, $query);
+        if (empty($fq) || empty($name) || empty($Adda) || empty($City) || empty($Zip) || empty($State)) {
+            echo "
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+                <div class='myform'>
+                  <h3>You Have successfully updated your info.</h3><br/>
+                  <p class='link'>Click here to <a href='Account.php'>View Account</a></p>
+                  </div>";
+        }
         if ($result) {
             echo "
             <br>
@@ -88,20 +107,20 @@ include("auth_session.php");
              
                 <i class="fa fa-coffee"></i>
 
-            <form class="myform" role="form">
+            <form class="myform">
                 <div class = "form-group">
                     <h3>Personal info</h3>
                 </div>
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Full name:</label>
                     <div class="col-lg-8">
-                        <input class="form-control" name="name" type="text" placeholder="Jhon Smith" maxlength="50" required>
+                        <input class="form-control" name="name" type="text" placeholder="Jhon Smith" maxlength="50" required/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Address:</label>
                     <div class="col-lg-8">
-                        <input class="form-control" name="Adda" type="text" value="" maxlength="100"required>
+                        <input class="form-control" name="Adda" type="text" value="" maxlength="100" required/>
                     </div>
                 </div>
                 <div class="form-group">
@@ -113,13 +132,13 @@ include("auth_session.php");
                 <div class="form-group">
                     <label class="col-lg-3 control-label">City:</label>
                     <div class="col-lg-8">
-                        <input class="form-control" name="City" type="text" value="" maxlength="100" required>
+                        <input class="form-control" name="City" type="text" value="" maxlength="100" required/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Zip code:</label>
                     <div class="col-lg-8">
-                        <input class="form-control" name="Zip" type="text" value="" maxlength="9" minlength="5" onkeypress="return event.charCode != 32" required>
+                        <input class="form-control" name="Zip" type="text" value="" maxlength="9" minlength="5" onkeypress="return event.charCode != 32" required/>
                     </div>
                 </div>
                 <div class="form-group">
@@ -184,7 +203,7 @@ include("auth_session.php");
                         </div>
                     </div>
                 </div>
-                <input onclick="window.location.href='fuelQuote.php'" type="submit" value="Save" class="btn">
+                <input onclick="window.location.href='fuelQuote.php'" type="submit" value="Save" class="btn"/>
 
 
             </form>

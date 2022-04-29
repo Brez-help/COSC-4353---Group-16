@@ -12,16 +12,80 @@
     // When form submitted, insert values into the database.
     if (isset($_REQUEST['username'])) {
         // removes backslashes
+
         $username = stripslashes($_REQUEST['username']);
         //escapes special characters in a string
         $username = mysqli_real_escape_string($con, $username);
         $password = stripslashes($_REQUEST['password']);
         $password = mysqli_real_escape_string($con, $password);
+        $temp = $password;
         $password = md5($password);
-        $query    = "INSERT into `loginafule` (username, password)
+        $query = "select count(Username) as total from loginafule where Username = '$username'";
+        $result = mysqli_query($con,$query);
+        $data = mysqli_fetch_assoc($result);
+        if (empty($temp)) {
+            echo "
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+                <div class='myform'>
+                  <h3>Please make password length bewteen 8-20 characters.</h3><br/>
+                  <p class='link'>Click here to <a href='login.php'>Login</a></p>
+                  </div>";
+        }
+
+        else if (strlen($temp) < 8 && strlen($temp) > 20 && empty($temp)) {//this checks characters
+            echo "
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+                <div class='myform'>
+                  <h3>Please make password length bewteen 8-20 characters.</h3><br/>
+                  <p class='link'>Click here to <a href='login.php'>Login</a></p>
+                  </div>";
+        }
+
+        else if ($data['total'] > 0) {//checks if password is in use
+            echo "
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+                <div class='myform'>
+                  <h3>Username already in use. Please create a different username.</h3><br/>
+                  <p class='link'>Click here to <a href='login.php'>Login</a></p>
+                  </div>";
+        }
+        else {//successful
+            $query    = "INSERT into `loginafule` (username, password)
                      VALUES ('$username', '$password')";
-        $result   = mysqli_query($con, $query);
-        if ($result) {
+            $result   = mysqli_query($con, $query);
             echo "
             <br>
             <br>
@@ -39,27 +103,7 @@
                   <h3>You are registered successfully.</h3><br/>
                   <p class='link'>Click here to <a href='login.php'>Login</a></p>
                   </div>";
-        } else {
-            echo "
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-                <div class='myform'>
-                  <h3>Required fields are missing.</h3><br/>
-                  <p class='link'>Click here to <a href='registration.php'>registration</a> again.</p>
-                  
-                  </div>";
-                  
-        }
+        } 
     } else {
 ?>
     <br>
