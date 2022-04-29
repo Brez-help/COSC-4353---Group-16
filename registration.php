@@ -23,7 +23,7 @@
         $query = "select count(Username) as total from loginafule where Username = '$username'";
         $result = mysqli_query($con,$query);
         $data = mysqli_fetch_assoc($result);
-        if (empty($temp)) {
+        if (empty($temp)) {//if passowrd is empty
             echo "
             <br>
             <br>
@@ -63,7 +63,7 @@
                   </div>";
         }
 
-        else if ($data['total'] > 0) {//checks if password is in use
+        else if ($data['total'] > 0) {//checks if user name is in use
             echo "
             <br>
             <br>
