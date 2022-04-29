@@ -26,7 +26,20 @@
             // Redirect to user dashboard page
             header("Location: Account.php");
         } else {
-            echo "<div class='myform'>
+            echo "
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+                <div class='myform'>
                   <h3>Incorrect Username/password.</h3><br/>
                   <p class='link'>Click here to <a href='login.php'>Login</a> again.</p>
                   </div>";
@@ -35,20 +48,26 @@
     } else {
 ?>
     <div class="container">
-    <form class="myform" method="post" name="login">
-        <h1 class="login-title">Login</h1>
         <br>
-        <div class = "form-group">
-            <input type="text"  name="username" placeholder="Username" autofocus="true"/>
-        </div>
-        <div class="form-group">
-            <input type="password" class="pass" name="password" placeholder="Password"/>
-        </div>
-        <div class="form-group">
-            <input type="submit" value="Login" name="submit" class="btn"/>
-        </div>
-        <p class="link"><a href="registration.php">New Registration</a></p>
-  </form>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <form class="myform" method="post" name="login">
+            <h1>Login</h1>
+            <br>
+            <div class = "form-group">
+                <input type="text"  name="username" placeholder="Username" autofocus="true"/>
+            </div>
+            <div class="form-group">
+                <input type="password" class="pass" name="password" placeholder="Password"/>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Login" name="submit" class="btn"/>
+            </div>
+            <p class="link"><a href="registration.php">New Registration</a></p>
+    </form>
   </div>
 <?php
     }

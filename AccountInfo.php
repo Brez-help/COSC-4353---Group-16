@@ -4,6 +4,11 @@ include("auth_session.php");
 ?>
 <!DOCTYPE html>
 <html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Account Info</title>
+        <link rel="stylesheet" href="src/style.css"/>
+    </head>
     <body>
         <?php
 require('db.php');
@@ -33,22 +38,24 @@ $sql = "Select Name, AddressA, AddressB, City, Zipcode, State from clientinfo wh
 
 
             <i class="fa fa-coffee"></i>
-            <h3>Personal info</h3>
 
-            <form class="form-horizontal" role="form">
+            <form class="myform" role="form">
+                <div class="form-group">
+                    <h3>Personal info</h3>
+                </div>
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Full name:</label>
                     <div class="col-lg-8">
                     <?php echo $row['Name'];?>                  </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-lg-3 control-label">Adress:</label>
+                    <label class="col-lg-3 control-label">Address:</label>
                     <div class="col-lg-8">
                     <?php echo $row['AddressA']; ?>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-lg-3 control-label">Adress 2:</label>
+                    <label class="col-lg-3 control-label">Address 2:</label>
                     <div class="col-lg-8">
                     <?php echo $row['AddressB']; ?>                   </div>
                 </div>
@@ -71,9 +78,12 @@ $sql = "Select Name, AddressA, AddressB, City, Zipcode, State from clientinfo wh
                         </div>
                     </div>
                 </div>
-                <input onclick="window.location.href='Account.php'" type="button" value="Edit">
-                <input onclick="window.location.href='fuelQuote.php'" type="button" value="Visit Fuel Quote page">
-
+                <div class = "form-group">    
+                    <input onclick="window.location.href='Account.php'" type="button" value="Edit" class = "btn">
+                </div>
+                <div class = "form-group">
+                    <input onclick="window.location.href='fuelQuote.php'" type="button" value="Visit Fuel Quote page" class = "btn">
+                </div>
 
             </form>
         </div>

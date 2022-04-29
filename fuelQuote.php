@@ -65,11 +65,11 @@
     </style>
 </head>
 <body>
-    <header>
+    <!--header>
         <div class="container">
             <h1>Fuel Quote Form</h1>
         </div>
-    </header>
+    </header-->
 
     <nav id="navbar">
         <div id="mySidenav" class="sidenav">
@@ -155,7 +155,7 @@ function closeNav() {
                     echo $empty;
                 }; ?></div>
             <div class="form-group">
-                <lable for="gallonsRequested">Gallons Requested:</lable>
+                <label for="gallonsRequested">Gallons Requested:</lable>
                 <div id="error"> <?php if (!empty($small)) {
                     echo $small;
                 }; ?></div>

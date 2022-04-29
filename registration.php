@@ -3,9 +3,10 @@
 <head>
     <meta charset="utf-8"/>
     <title>Registration</title>
-    <link rel="stylesheet" href="src/main.css"/>
+    <link rel="stylesheet" href="src/style.css"/>
 </head>
 <body>
+    <div class="container">
 <?php
     require('db.php');
     // When form submitted, insert values into the database.
@@ -21,12 +22,38 @@
                      VALUES ('$username', '$password')";
         $result   = mysqli_query($con, $query);
         if ($result) {
-            echo "<div class='form'>
+            echo "
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+                <div class='myform'>
                   <h3>You are registered successfully.</h3><br/>
                   <p class='link'>Click here to <a href='login.php'>Login</a></p>
                   </div>";
         } else {
-            echo "<div class='form'>
+            echo "
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+                <div class='myform'>
                   <h3>Required fields are missing.</h3><br/>
                   <p class='link'>Click here to <a href='registration.php'>registration</a> again.</p>
                   
@@ -35,17 +62,31 @@
         }
     } else {
 ?>
-    <form class="form" action="" method="post">
-        <h1 class="login-title">Registration</h1>
-        <input type="text" class="login-input" name="username" placeholder="Username" onkeypress="return event.charCode != 32" value='' onpaste="return false" required />
-        <input type="password" class="login-input" name="password" placeholder="Password" onkeypress="return event.charCode != 32 " maxlength="20">
-        <input type="submit" name="submit" value="Register" class="login-button">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <form class="myform" action="" method="post">
+        <div class="form-group">
+            <h1 class="login-title">Registration</h1>
+        </div>
+        <div class="form-group">
+            <input type="text" class="login-input" name="username" placeholder="Username" onkeypress="return event.charCode != 32" value='' onpaste="return false" required />
+        </div>
+        <div class="form-group">
+            <input type="password" class="pass" name="password" placeholder="Password" onkeypress="return event.charCode != 32 " maxlength="20">
+        </div>
+        <div class="form-group">
+            <input type="submit" name="submit" value="Register" class="btn">
+        </div>
         <p class="link"><a href="login.php">Click to Login</a></p>
     </form>
 <?php
     }
 ?>
 
-
+    </div>
 </body>
 </html>

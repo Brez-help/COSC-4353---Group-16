@@ -5,6 +5,11 @@ include("auth_session.php");
 
 <!DOCTYPE html>
 <html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Account</title>
+        <link rel="stylesheet" href="src/style.css"/>
+    </head>
     <body>
     <?php
     require('db.php');
@@ -30,14 +35,40 @@ include("auth_session.php");
                      VALUES ('$name', '$Adda','$Addb','$City','$Zip','$State','$Fq')";
         $result   = mysqli_query($con, $query);
         if ($result) {
-            echo "<div class='form'>
+            echo "
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+                <div class='myform'>
                   <h3>You Have successfully updated your info.</h3><br/>
                   <p class='link'>Click here to <a href='AccountInfo.php'>View Account</a></p>
                   <p class='link'>Or click here to <a href='fuelQuote.php'>View FuelQuote</a></p>
 
                   </div>";
         } else {
-            echo "<div class='form'>
+            echo "
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+                <div class='myform'>
                   <h3>Required fields are missing.</h3><br/>
                   <p class='link'>Click here to <a href='registration.php'>registration</a> again.</p>
                   </div>";
@@ -56,9 +87,11 @@ include("auth_session.php");
        
              
                 <i class="fa fa-coffee"></i>
-            <h3>Personal info</h3>
 
-            <form class="form-horizontal" role="form">
+            <form class="myform" role="form">
+                <div class = "form-group">
+                    <h3>Personal info</h3>
+                </div>
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Full name:</label>
                     <div class="col-lg-8">
@@ -66,13 +99,13 @@ include("auth_session.php");
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-lg-3 control-label">Adress:</label>
+                    <label class="col-lg-3 control-label">Address:</label>
                     <div class="col-lg-8">
                         <input class="form-control" name="Adda" type="text" value="" maxlength="100"required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-lg-3 control-label">Adress 2:</label>
+                    <label class="col-lg-3 control-label">Address 2:</label>
                     <div class="col-lg-8">
                         <input class="form-control" name="Addb" type="text" value="" maxlength="100">
                     </div>
@@ -84,16 +117,16 @@ include("auth_session.php");
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-lg-3 control-label">Zipcode:</label>
+                    <label class="col-lg-3 control-label">Zip code:</label>
                     <div class="col-lg-8">
                         <input class="form-control" name="Zip" type="text" value="" maxlength="9" minlength="5" onkeypress="return event.charCode != 32" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-lg-3 control-label">State:</label>
-                    <div class="col-lg-8">
+                    <div class="form-group">
                         <div class="ui-select">
-                            <select id="user_time_zone" name="State" class="form-control" require>
+                            <select id="user_time_zone" name="State" class="form-control" required>
                                 <option value="Enter Your State">Enter your State</option>
                                 <option value="AL">Alabama</option>
                                 <option value="AK">Alaska</option>
@@ -151,7 +184,7 @@ include("auth_session.php");
                         </div>
                     </div>
                 </div>
-                <input onclick="window.location.href='fuelQuote.php'" type="submit" value="Save">
+                <input onclick="window.location.href='fuelQuote.php'" type="submit" value="Save" class="btn">
 
 
             </form>
