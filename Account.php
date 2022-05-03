@@ -1,6 +1,8 @@
 <?php
 //include auth_session.php file on all user panel pages
 include("auth_session.php");
+include_once 'fuelQuote.inc.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -74,6 +76,28 @@ include("auth_session.php");
                   </div>";
         }
     } else {
+        $Fq = $_SESSION["username"];
+        $name = "";
+        $AddressA = "";
+        $AddressB = "";
+        $City = "";
+        $Zipcode = "";
+        $State = "Please Select State";
+        $query = "Select Name, AddressA, AddressB, City, Zipcode, State from clientinfo where loginafule_Username='$Fq';";
+        $result = mysqli_query($con, $query);
+        $resultCheck = mysqli_num_rows($result);
+
+        if($resultCheck > 0) {
+            while($row = mysqli_fetch_array($result)) {
+                $name = $row['Name'];
+                $AddressA = $row['AddressA'];
+                $AddressB = $row['AddressB'];
+                $City = $row['City'];
+                $Zipcode = $row['Zipcode'];
+                $State = $row['State'];
+            }
+        }
+
 ?>
 
 <div class="container bootstrap snippets bootdey">
@@ -95,31 +119,31 @@ include("auth_session.php");
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Full name:</label>
                     <div class="col-lg-8">
-                        <input class="form-control" name="name" type="text" placeholder="Jhon Smith" maxlength="50" required/>
+                        <input class="form-control" name="name" type="text" value="<?php echo $name;?>" maxlength="50" required/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Address:</label>
                     <div class="col-lg-8">
-                        <input class="form-control" name="Adda" type="text" value="" maxlength="100" required/>
+                        <input class="form-control" name="Adda" type="text" value="<?php echo $AddressA;?>" maxlength="100" required/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Address 2:</label>
                     <div class="col-lg-8">
-                        <input class="form-control" name="Addb" type="text" value="" maxlength="100">
+                        <input class="form-control" name="Addb" type="text" value="<?php echo $AddressB;?>" maxlength="100">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-lg-3 control-label">City:</label>
                     <div class="col-lg-8">
-                        <input class="form-control" name="City" type="text" value="" maxlength="100" required/>
+                        <input class="form-control" name="City" type="text" value="<?php echo $City;?>" maxlength="100" required/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Zip code:</label>
                     <div class="col-lg-8">
-                        <input class="form-control" name="Zip" type="text" value="" maxlength="9" minlength="5" onkeypress="return event.charCode != 32" required/>
+                        <input class="form-control" name="Zip" type="text" value="<?php echo $Zipcode;?>" maxlength="9" minlength="5" onkeypress="return event.charCode != 32" required/>
                     </div>
                 </div>
                 <div class="form-group">
@@ -127,7 +151,7 @@ include("auth_session.php");
                     <div class="form-group">
                         <div class="ui-select">
                             <select id="user_time_zone" name="State" class="form-control" required>
-                                <option value="Enter Your State">Enter your State</option>
+                                <option value="<?php echo $State;?>"><?php echo $State;?></option>
                                 <option value="AL">Alabama</option>
                                 <option value="AK">Alaska</option>
                                 <option value="AZ">Arizona</option>
