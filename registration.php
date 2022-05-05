@@ -23,6 +23,9 @@
         $query = "select count(Username) as total from loginafule where Username = '$username'";
         $result = mysqli_query($con,$query);
         $data = mysqli_fetch_assoc($result);
+
+        $count = strlen($temp);
+        echo $count;
         if (empty($temp)) {//if passowrd is empty
             echo "
             <br>
@@ -42,8 +45,7 @@
                   <p class='link'>Click here to <a href='login.php'>Login</a></p>
                   </div>";
         }
-
-        else if (strlen($temp) < 8 && strlen($temp) > 20 && empty($temp)) {//this checks characters
+        else if ($count < 8 || $count > 20) {//this checks characters
             echo "
             <br>
             <br>
@@ -62,7 +64,6 @@
                   <p class='link'>Click here to <a href='login.php'>Login</a></p>
                   </div>";
         }
-
         else if ($data['total'] > 0) {//checks if user name is in use
             echo "
             <br>
