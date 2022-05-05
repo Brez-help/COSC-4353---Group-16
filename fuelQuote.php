@@ -77,6 +77,7 @@
 
             <a href="AccountInfo.php">Account Info</a>
             <a href="logout.php">Logout</a>
+            <a href="fuelHistory.php">Fuel History</a>
         </div>
         <div class="right">
             <span style="font-size:30px;cursor:pointer" onclick="openNav()">
@@ -138,13 +139,66 @@ function closeNav() {
                 $suggestedPrice = $cost->getsuggestedPrice();
                 $totalCost = $cost->gettotalCost();
                 
-                $query = "INSERT INTO `fuelform`(SugPrice, DelDate, DelAddress, DelForm, GalReq, TotalCost, loginafule_User)
+                /*$query = "INSERT INTO `fuelform`(SugPrice, DelDate, DelAddress, DelForm, GalReq, TotalCost, loginafule_User)
                 VALUES ('$suggestedPrice', '$deliverlyDate', '$address', '$deliverFrom', '$gallonsRequested', '$totalCost', '$user');";
                 
-                $result   = mysqli_query($conn, $query);
+                $result   = mysqli_query($conn, $query);*/
+                $_SESSION['gallonsRequested'] = $gallonsRequested;
+                $_SESSION['deliverlyDate'] = $deliverlyDate;
+                $_SESSION['deliverFrom'] = $deliverFrom;
+
+                echo "<br>
+                <form class='myform2' id='myform2' action='fuelQuote.php' method='POST'>
+                    <div class = 'form-group'>
+                        <h2>
+                        Suggested Price: $".$suggestedPrice."<br>
+                        Total Price: $".$totalCost."<br>
+                        Would you like to go ahead a purchase?</h2>
+                    </div>
+                    <div class = 'form-group'>
+                        Yes
+                        <!--label for='yes' class='answer'>Yes</label-->
+                        <input type='radio' name='answer' id='yes' value='Yes'>
+                    <div class='form-group'>
+                    <div class = 'form-group'>
+                        <label for='no' class='answer'>No</label>
+                        <input type='radio' name='answer' id='no' value='No'>
+                    <div class='form-group'>
+                        <button class='btn' type='submit' name='button' value='submit' >Submit</button>
+                    </div>
+                </form>
+                <br><br><br>";
             }
                 
                 
+        }
+
+        if(isset($_POST['answer'])) {
+            if ($_POST['answer'] == 'Yes') {
+                $user = $username;
+                $gallonsRequested = $_SESSION['gallonsRequested'];
+                $deliverlyDate = $_SESSION['deliverlyDate'];
+                $deliverFrom = $_SESSION['deliverFrom'];
+
+                $cost = new pricingModule($gallonsRequested,  $deliverFrom, $conn, $user);
+                $suggestedPrice = $cost->getsuggestedPrice();
+                $totalCost = $cost->gettotalCost();
+                    
+                $query = "INSERT INTO `fuelform`(SugPrice, DelDate, DelAddress, DelForm, GalReq, TotalCost, loginafule_User)
+                VALUES ('$suggestedPrice', '$deliverlyDate', '$address', '$deliverFrom', '$gallonsRequested', '$totalCost', '$user');";
+                    
+                $result   = mysqli_query($conn, $query);
+                echo "<div>
+                <h1> Fuel has successfully been purchased</h1>
+                </div>";
+            }
+            else{
+                echo "<div>
+                <h1> Fuel was not purchased</h1>
+                </div>";
+            }
+
+            
         }
         
     ?>
@@ -236,7 +290,7 @@ function closeNav() {
         </form>
        
 
-        <table class="mytable" id="mytable">
+        <!--table class="mytable" id="mytable">
             <thead>
                 <tr class="tophead">
                     <th colspan="16">Fuel Quote History</th>
@@ -269,7 +323,7 @@ function closeNav() {
                 </tr>
 <?php }} ?>
             </tbody>
-        </table>
+        </table-->
 
 
     </div>
