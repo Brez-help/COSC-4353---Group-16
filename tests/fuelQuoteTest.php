@@ -9,16 +9,10 @@ class fuelQuoteTest extends TestCase {
         $gallonsrequested = '';
         $deliverlyDate = "";
         $deliverFrom = "";
-        $today = date("Y-m-d");
         if(empty($gallonsrequested) || empty($deliverlyDate) || empty($deliverFrom)) {
             $result = true;
         }
-        else if($gallonsrequested <= 0) {
-            $result = true;
-        }
-        else if($today > $deliverlyDate) {
-            $result = true;
-        }
+
 
 
         $this->assertEquals(true, $result);
@@ -29,14 +23,7 @@ class fuelQuoteTest extends TestCase {
         $gallonsrequested = '';
         $deliverlyDate = "12-12-2024";
         $deliverFrom = "TX";
-        $today = date("Y-m-d");
         if(empty($gallonsrequested) || empty($deliverlyDate) || empty($deliverFrom)) {
-            $result = true;
-        }
-        else if($gallonsrequested <= 0) {
-            $result = true;
-        }
-        else if($today > $deliverlyDate) {
             $result = true;
         }
 
@@ -48,15 +35,7 @@ class fuelQuoteTest extends TestCase {
         $result = false;
         $gallonsrequested = 1000;
         $deliverlyDate = "";
-        $deliverFrom = "TX";
-        $today = date("Y-m-d");
         if(empty($gallonsrequested) || empty($deliverlyDate) || empty($deliverFrom)) {
-            $result = true;
-        }
-        else if($gallonsrequested <= 0) {
-            $result = true;
-        }
-        else if($today > $deliverlyDate) {
             $result = true;
         }
 
@@ -69,33 +48,17 @@ class fuelQuoteTest extends TestCase {
         $gallonsrequested = 1000;
         $deliverlyDate = "12-12-2024";
         $deliverFrom = "";
-        $today = date("Y-m-d");
         if(empty($gallonsrequested) || empty($deliverlyDate) || empty($deliverFrom)) {
             $result = true;
         }
-        else if($gallonsrequested <= 0) {
-            $result = true;
-        }
-        else if($today > $deliverlyDate) {
-            $result = true;
-        }
-
 
         $this->assertEquals(true, $result);
     }
     public function testGallons() {
         $result = false;
         $gallonsrequested = -1000;
-        $deliverlyDate = "12-12-2024";
-        $deliverFrom = "TX";
-        $today = date("Y-m-d");
-        if(empty($gallonsrequested) || empty($deliverlyDate) || empty($deliverFrom)) {
-            $result = true;
-        }
-        else if($gallonsrequested <= 0) {
-            $result = true;
-        }
-        else if($today > $deliverlyDate) {
+        
+        if($gallonsrequested <= 0) {
             $result = true;
         }
 
@@ -106,17 +69,10 @@ class fuelQuoteTest extends TestCase {
     }
     public function testDate() {
         $result = false;
-        $gallonsrequested = 1000;
         $deliverlyDate = "12-12-2021";
-        $deliverFrom = "TX";
         $today = date("Y-m-d");
-        if(empty($gallonsrequested) || empty($deliverlyDate) || empty($deliverFrom)) {
-            $result = true;
-        }
-        else if($gallonsrequested <= 0) {
-            $result = true;
-        }
-        else if($today > $deliverlyDate) {
+
+        if($today > $deliverlyDate) {
             $result = true;
         }
 

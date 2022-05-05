@@ -8,18 +8,7 @@ class loginTest extends TestCase {
         $result = false;
         $username = '';
         $password = '';
-        $dbu = 'dtrick45';
-        $dbp = 'password';
         if (empty($username) || empty($password)) {
-            $result = true;
-        }
-        else if ($username == $dbu && $password != $dbp) {
-            $result = true;
-        }
-        else if($username != $dbu && $password == $dbp) {
-            $result = true;
-        }
-        else if($username != $dbu && $password != $dbp) {
             $result = true;
         }
 
@@ -29,18 +18,7 @@ class loginTest extends TestCase {
         $result = false;
         $username = 'dtrick45';
         $password = '';
-        $dbu = 'dtrick45';
-        $dbp = 'password';
         if (empty($username) || empty($password)) {
-            $result = true;
-        }
-        else if ($username == $dbu && $password != $dbp) {
-            $result = true;
-        }
-        else if($username != $dbu && $password == $dbp) {
-            $result = true;
-        }
-        else if($username != $dbu && $password != $dbp) {
             $result = true;
         }
 
@@ -50,18 +28,7 @@ class loginTest extends TestCase {
         $result = false;
         $username = '';
         $password = 'password';
-        $dbu = 'dtrick45';
-        $dbp = 'password';
         if (empty($username) || empty($password)) {
-            $result = true;
-        }
-        else if ($username == $dbu && $password != $dbp) {
-            $result = true;
-        }
-        else if($username != $dbu && $password == $dbp) {
-            $result = true;
-        }
-        else if($username != $dbu && $password != $dbp) {
             $result = true;
         }
 
@@ -73,16 +40,7 @@ class loginTest extends TestCase {
         $password = 'pass';
         $dbu = 'dtrick45';
         $dbp = 'password';
-        if (empty($username) || empty($password)) {
-            $result = true;
-        }
-        else if ($username == $dbu && $password != $dbp) {
-            $result = true;
-        }
-        else if($username != $dbu && $password == $dbp) {
-            $result = true;
-        }
-        else if($username != $dbu && $password != $dbp) {
+        if ($username != $dbu || $password != $dbp) {
             $result = true;
         }
 
@@ -94,16 +52,7 @@ class loginTest extends TestCase {
         $password = 'password';
         $dbu = 'dtrick45';
         $dbp = 'password';
-        if (empty($username) || empty($password)) {
-            $result = true;
-        }
-        else if ($username == $dbu && $password != $dbp) {
-            $result = true;
-        }
-        else if($username != $dbu && $password == $dbp) {
-            $result = true;
-        }
-        else if($username != $dbu && $password != $dbp) {
+        if ($username != $dbu || $password != $dbp) {
             $result = true;
         }
 
